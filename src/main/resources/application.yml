@@ -1,0 +1,17 @@
+bot:
+  username: Love_messages_yay_bot
+  token: 1944956152:AAGgy3eUwIiQ4tSEN8b7ZDxt91ADr5frZtQ
+
+spring:
+  batch:
+    jdbc:
+      initialize-schema: always
+  datasource:
+    url: jdbc:postgresql://localhost:5432/love
+    username: love
+    password: 123
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
