@@ -4,14 +4,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.PartialBotApiMethod;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import ru.pshiblo.love.domain.User;
 import ru.pshiblo.love.domain.enums.State;
 import ru.pshiblo.love.repository.UserRepository;
 import ru.pshiblo.love.telegram.utils.TelegramUtils;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -29,9 +28,9 @@ public class StopHandler implements Handler {
             repository.save(user);
             SendMessage msg = TelegramUtils.createMessageTemplate(user);
             msg.setText("Еййй, комплименты опять приходят!");
-            return List.of(msg);
+            return Collections.singletonList(msg);
         }
-        return List.of();
+        return Collections.emptyList();
     }
 
     @Override

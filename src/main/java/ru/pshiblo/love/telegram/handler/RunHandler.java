@@ -13,6 +13,7 @@ import ru.pshiblo.love.repository.UserRepository;
 import ru.pshiblo.love.telegram.utils.TelegramUtils;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
 
 import static ru.pshiblo.love.telegram.handler.StopHandler.RUN;
@@ -33,22 +34,22 @@ public class RunHandler implements Handler {
             SendMessage msg = TelegramUtils.createMessageTemplate(user);
             msg.setText(loveMessageRepository.getRandomMsg().getMessage());
             InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
-            List<InlineKeyboardButton> buttons = List.of(TelegramUtils.createInlineKeyboardButton("Еще комплимент!", GET_CON));
-            inlineKeyboardMarkup.setKeyboard(List.of(buttons));
+            List<InlineKeyboardButton> buttons = Collections.singletonList(TelegramUtils.createInlineKeyboardButton("Еще комплимент!", GET_CON));
+            inlineKeyboardMarkup.setKeyboard(Collections.singletonList(buttons));
             msg.setReplyMarkup(inlineKeyboardMarkup);
-            return List.of(msg);
+            return Collections.singletonList(msg);
         } else if (message.startsWith(STOP)) {
             user.setState(State.STOP);
             userRepository.save(user);
             SendMessage msg = TelegramUtils.createMessageTemplate(user);
             msg.setText("Теперь комплименты не будут приходить :с Если хочешь их опять получать введи /run");
             InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
-            List<InlineKeyboardButton> buttons = List.of(TelegramUtils.createInlineKeyboardButton("Хочу снова получать комплименты", RUN));
-            inlineKeyboardMarkup.setKeyboard(List.of(buttons));
+            List<InlineKeyboardButton> buttons = Collections.singletonList(TelegramUtils.createInlineKeyboardButton("Хочу снова получать комплименты", RUN));
+            inlineKeyboardMarkup.setKeyboard(Collections.singletonList(buttons));
             msg.setReplyMarkup(inlineKeyboardMarkup);
-            return List.of(msg);
+            return Collections.singletonList(msg);
         }
-        return List.of();
+        return Collections.emptyList();
     }
 
     @Override

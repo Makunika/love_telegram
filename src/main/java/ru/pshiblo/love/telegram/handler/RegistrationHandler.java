@@ -12,6 +12,7 @@ import ru.pshiblo.love.repository.UserRepository;
 import ru.pshiblo.love.telegram.utils.TelegramUtils;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
 
 import static ru.pshiblo.love.telegram.handler.RunHandler.GET_CON;
@@ -32,18 +33,18 @@ public class RegistrationHandler implements Handler {
             SendMessage msg = TelegramUtils.createMessageTemplate(user);
             msg.setText("Оууууу! Комплименты будут приходить автоматически, ня");
             InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
-            List<InlineKeyboardButton> buttons = List.of(TelegramUtils.createInlineKeyboardButton("Получить комплимент", GET_CON));
-            inlineKeyboardMarkup.setKeyboard(List.of(buttons));
+            List<InlineKeyboardButton> buttons = Collections.singletonList(TelegramUtils.createInlineKeyboardButton("Получить комплимент", GET_CON));
+            inlineKeyboardMarkup.setKeyboard(Collections.singletonList(buttons));
             msg.setReplyMarkup(inlineKeyboardMarkup);
-            return List.of(msg);
+            return Collections.singletonList(msg);
         } else {
             SendMessage helloMessage = TelegramUtils.createMessageTemplate(user);
             helloMessage.setText("Самые милые комплименты любимой девушке Насте :3");
             InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
-            List<InlineKeyboardButton> buttons = List.of(TelegramUtils.createInlineKeyboardButton("Начать", START_BOT));
-            inlineKeyboardMarkup.setKeyboard(List.of(buttons));
+            List<InlineKeyboardButton> buttons = Collections.singletonList(TelegramUtils.createInlineKeyboardButton("Начать", START_BOT));
+            inlineKeyboardMarkup.setKeyboard(Collections.singletonList(buttons));
             helloMessage.setReplyMarkup(inlineKeyboardMarkup);
-            return List.of(helloMessage);
+            return Collections.singletonList(helloMessage);
         }
     }
 
