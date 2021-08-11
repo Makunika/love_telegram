@@ -7,9 +7,9 @@ spring:
     jdbc:
       initialize-schema: always
   datasource:
-    url: jdbc:postgresql://localhost:5432/love
-    username: love
-    password: 123
+    url: jdbc:postgresql://ec2-54-229-68-88.eu-west-1.compute.amazonaws.com:5432/d98g1p3871j96u
+    username: sjgsrhwnnzseym
+    password: 2e5741a237321ba9ca1e214203f6883d607f40a6c41f7f4a56f280cffd50e35c
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
